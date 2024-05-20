@@ -1,0 +1,76 @@
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
+
+app.use(cors())
+app.use(express.json())
+
+const db = ('mongodb+srv://mdkaif:Kaif1234@cluster0.pwghvi0.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(db,
+  {
+  useNewUrlParser: true,
+  // useCreateindex: true,
+  // useUnifiedTopology: true,
+  // useFindAndModify: false
+}
+).then(()=>{
+
+  console.log('successful');
+  
+}).catch((err)=>console.log(err));
+
+//mongodb://localhost:27017
+app.post('/api/register', async(req, res)=>{
+    console.log(req.body)
+    
+    try{
+         await User.create({
+        name: req.body.name,
+        email:req.body.email,
+        password: req.body.password,
+       })
+       if(user){
+        return res.json({status:'ok', user:true})
+       }
+    // res.json({status:'ok'})
+  
+      }
+      catch(err){
+        res.json({status:'error', error:'Duplicate email'})
+    }
+    
+})
+
+
+app.post('/api/login', async(req, res)=>{
+  console.log(req.body)
+  
+  try{
+       await User.findOne({
+      // name: req.body.name,
+      email:req.body.email,
+      password: req.body.password,
+     })
+     if(user){
+      const token = jwt.sign(
+        {
+          name: user.name,
+          email:user.email, 
+
+      }, 'secret123')
+      return res.json({status:'ok', user: token})
+     }
+  // res.json({status:'ok'})
+
+    }
+    catch(err){
+      res.json({status:'error', error:'false'})
+  }
+  
+})
+
+app.listen(1337, ()=>{
+  console.log('server stated on 1337')
+})
