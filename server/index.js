@@ -12,7 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 const db = ('mongodb+srv://mdkaif:Kaif1234@cluster0.pwghvi0.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0')
-mongoose.connect(process.env.MONGODB_URI || db,
+mongoose.connect(db,
   {
   useNewUrlParser: true,
   // useCreateindex: true,
@@ -105,6 +105,6 @@ app.post('/api/quote', async (req, res) => {
 
 port = process.env.PORT || 1337;
 
-app.listen(port, () => {
+app.listen(1337, () => {
 	console.log('Server started on 1337')
 })
