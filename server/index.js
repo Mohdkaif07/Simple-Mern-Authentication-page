@@ -8,13 +8,7 @@ const User = require('./models/user.models');
 require("dotenv").config();
 
 
-app.use(cors(
-	{
-		origin: ["https://simple-mern-authentication-page-kcxv.vercel.app"],
-		methods: ["POST", GET],
-		credentials: true
-	}
-))
+app.use(cors())
 app.use(express.json())
 
 const db = ('mongodb+srv://mdkaif:Kaif1234@cluster0.pwghvi0.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0')
