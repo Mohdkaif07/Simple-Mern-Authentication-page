@@ -1,16 +1,18 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const User = require('./models/user.models')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const User = require('./models/user.models');
+require("dotenv").config();
+
 
 app.use(cors())
 app.use(express.json())
 
 const db = ('mongodb+srv://mdkaif:Kaif1234@cluster0.pwghvi0.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0')
-mongoose.connect(db,
+mongoose.connect(process.env.MONGODB_URI || db,
   {
   useNewUrlParser: true,
   // useCreateindex: true,
@@ -101,6 +103,8 @@ app.post('/api/quote', async (req, res) => {
 	}
 })
 
-app.listen(1337, () => {
+port = process.env.PORT || 1337;
+
+app.listen(port, () => {
 	console.log('Server started on 1337')
 })
