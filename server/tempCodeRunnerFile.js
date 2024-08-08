@@ -1,3 +1,1 @@
-const cors = require('cors')
-
-// app.use(cors())
+'/api/login'

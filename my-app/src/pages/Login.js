@@ -1,5 +1,6 @@
 // import './App.css';
 import React, {useState} from 'react';
+import {Link } from 'react-router-dom';
 
 
 function App() {
@@ -23,24 +24,39 @@ function App() {
 
   const data = await response.json()
   if(data.user) {
+    const token = await data.token;
+    localStorage.setItem('token',token)
+    console.log("waiting"+ token)
      alert('login successful')
-     window.location.href = '/dashboard'
+     window.location.href = '/'
   }else{
       alert('please check your username and passsword')
   }
+  
   console.log(data)
+  
   
 }
   return (
-    <div className="App">
-      <h1>Login</h1>
+    <>
+     <div className='navbar'>
+            <Link className='link-text' to='/'>Home</Link>
+            <input className='link-text' type='search' placeholder='search'/>
+            <Link className='link-text1' to='/Login'>LOGIN</Link>
+            <Link className='link-text' to='/register'>REGISTER</Link>
+      </div>
+
+
+    <div className="login">
+      <h1>Student Login</h1>
       <form onSubmit={loginUser}>
         {/* <input value={name} onChange={(e)=> setName(e.target.value)} type='text' placeholder='First Name'/><br/> */}
-        <input type='email' value={email} onChange={(e)=> setEmail(e.target.value)} placeholder='Email'/><br/>
-        <input value={password} onChange={(e)=>setPassword(e.target.value)} type='password' placeholder='password'/><br/>
-        <input type='submit' value='login'/>
+        <input className='input' type='email' value={email} onChange={(e)=> setEmail(e.target.value)} placeholder='Email'/><br/>
+        <input className='input' value={password} onChange={(e)=>setPassword(e.target.value)} type='password' placeholder='password'/><br/>
+        <input className='button' type='submit' value='signin'/>
       </form>
       </div>
+      </>
       /* /* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         
@@ -59,10 +75,7 @@ function App() {
       </header>
       <div className="div">amazon</div>
       
-      <div className="div">amazon</div> */ 
-      
-
-    
+      <div className="div">amazon</div> */  
     
   );
   
