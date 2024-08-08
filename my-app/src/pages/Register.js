@@ -14,7 +14,7 @@ function App() {
 
    async function registerUser(event){
          event.preventDefault()
-        const response = await fetch('https://simple-mern-authentication-page-2.onrender.com/', {
+        const response = await fetch('https://simple-mern-authentication-page-2.onrender.com/api/register', {
        headers: {
         'Content-Type':'application/JSON',
          },
