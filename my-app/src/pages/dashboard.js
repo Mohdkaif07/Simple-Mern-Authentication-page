@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {jwtDecode} from 'jwt-decode'
-// import {useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 // import { decode } from 'jsonwebtoken'
-      
+       
 const Dashboard = () => {
+    const isUserSignedIn=!!localStorage.getItem('token')
     
     // const navigate= useNavigate()
     
@@ -60,6 +61,7 @@ const Dashboard = () => {
     }
 
     return (
+        
            <div>
                 <h1>Your quote: {quote || 'No quote found'}</h1>
                  <form onSubmit={updateQuote}>
@@ -71,6 +73,22 @@ const Dashboard = () => {
                         />
                         <input type= "submit" value="update Quote"/>
                  </form>
+                 {isUserSignedIn ? (
+                <>
+                  <button className='logout'  >LOGOUT</button>
+                </>
+            ):(
+                      <>
+                      <div className='navbar'>
+                      <Link className='link-text' to='/'>Home</Link>
+                      <input className='link-text' type='search' placeholder='search'/>
+                      <Link className='link-text1' to='/Login'>LOGIN</Link>
+                      <Link className='link-text' to='/register'>REGISTER</Link>
+                      
+                      </div>
+                      </>
+            )}
+                 
            </div>
     )
 }
