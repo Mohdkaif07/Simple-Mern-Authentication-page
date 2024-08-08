@@ -9,7 +9,7 @@ function App() {
 
   async function loginUser(event){
   event.preventDefault()
-  const response = await fetch('https://simple-mern-authentication-page-2.onrender.com/', {
+  const response = await fetch('https://simple-mern-authentication-page-2.onrender.com/api/login', {
   headers: {
     'Content-Type':'application/JSON',
   },
