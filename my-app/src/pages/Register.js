@@ -14,7 +14,7 @@ function App() {
 
    async function registerUser(event){
          event.preventDefault()
-        const response = await fetch('https://simple-mern-authentication-page-kcxv.vercel.app/register', {
+        const response = await fetch('https://simple-mern-authentication-page-2.onrender.com/', {
        headers: {
         'Content-Type':'application/JSON',
          },
